@@ -1,6 +1,8 @@
 package com.qianfeng.boot.dao;
 
 import com.qianfeng.boot.pojo.entity.Goods;
+import com.qianfeng.boot.pojo.query.GoodsQuery;
+import com.qianfeng.boot.pojo.vo.GoodsVO;
 
 import java.util.List;
 
@@ -24,4 +26,10 @@ public interface GoodsDao {
     List<Goods> selectAll();
 
     List<Goods> selectPage(Integer start,Integer num);
+
+
+
+    List<GoodsVO> ajaxList(GoodsQuery query);
+
+    Integer ajaxListCount(GoodsQuery query);
 }

@@ -171,6 +171,37 @@
         <include refid="Base_Column_List"/>
         from goods limit ${start},${num}
     </select>
+    <select id="ajaxList" resultType="com.qianfeng.boot.pojo.vo.GoodsVO">
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+        <where>
+            <if test="title!=null and title!=''">
+                and tilte like CONCAT('%',#{title},'%')
+            </if>
+            <if test="minPrice!=null">
+                and now_price >=#{minPrice}
+            </if>
+            <if test="maxPrice!=null">
+                and now_price &lt;=#{maxPrice}
+            </if>
+        </where>
+        limit #{start},#{limit}
+    </select>
+    <select id="ajaxListCount" resultType="java.lang.Integer">
+        select count(*) from goods
+        <where>
+            <if test="title!=null and title!=''">
+                and title like CONCAT ('%',#{title},'%')
+            </if>
+            <if test="minPrice!=null">
+                and now_price >=#{minPrice}
+            </if>
+            <if test="maxPrice!=null">
+                and now_price &lt;=#{maxPrice}
+            </if>
+        </where>
+    </select>
 
 
 </mapper>
