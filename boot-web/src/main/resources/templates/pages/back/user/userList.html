@@ -24,7 +24,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-block">
-                <input type="text" name="title" id="title" placeholder="请输入名称" autocomplete="off"
+                <input type="text" name="title"  placeholder="请输入名称" autocomplete="off"
                        style="width: 160px"
                        class="layui-input">
             </div>
@@ -33,7 +33,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">原价</label>
             <div class="layui-input-inline">
-                <input type="text" name="old_Price" id="oldPrice" placeholder="请输入价格"
+                <input type="text" name="old_Price" placeholder="请输入价格"
                        style="width: 160px"
                        autocomplete="off" class="layui-input">
             </div>
@@ -41,7 +41,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">现价</label>
             <div class="layui-input-inline">
-                <input type="text" name="nowPrice" id="nowPrice" placeholder="请输入现价"
+                <input type="text" name="nowPrice"  placeholder="请输入现价"
                        style="width: 160px"
                        autocomplete="off" class="layui-input">
             </div>
@@ -49,7 +49,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">创建时间</label>
             <div class="layui-input-inline">
-                <input type="text" name="createTime" id="createTime" placeholder="请输入创建时间"
+                <input type="text" name="createTime" placeholder="请输入创建时间"
                        style="width: 160px"
                        autocomplete="off" class="layui-input">
             </div>
@@ -57,7 +57,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">已售</label>
             <div class="layui-input-inline">
-                <input type="text" name="sold" id="sold" placeholder="请输入已售数"
+                <input type="text" name="sold"  placeholder="请输入已售数"
                        style="width: 160px"
                        autocomplete="off" class="layui-input">
             </div>
@@ -65,7 +65,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">评分</label>
             <div class="layui-input-inline">
-                <input type="text" name="score" id="score" placeholder="请输入评分"
+                <input type="text" name="score"  placeholder="请输入评分"
                        style="width: 160px"
                        autocomplete="off" class="layui-input">
             </div>
@@ -91,7 +91,7 @@
 
         // layer.msg('弹出一个消息', {icon: 1});
 
-        //第一个实例
+        // //第一个实例
         let tb = table.render({// 渲染表格
             elem: '#userTable'
             , url: '/pages/back/user/ajaxUserList' //服务后台的数据接口
@@ -121,11 +121,11 @@
             , toolbar: 'default'
         });
 
-        //监听工具条
+        // //监听工具条
         table.on('tool(userTable)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
             console.log(obj);
             var data = obj.data; //获得当前行数据
-            console.log(data);
+            // console.log(data);
             // console.log(data.goodsId);
             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
             // console.log(layEvent)
@@ -147,11 +147,11 @@
                 });
             } else if (layEvent == 'addData') {
 
-                // layer.open({// 弹框之后，如遇到select标签，radio,checkbox之类，需要使用表单渲染
-                //     title: "添加",
-                //     content: $("#addForm").html()
-                // });
-                // form.render();
+                layer.open({// 弹框之后，如遇到select标签，radio,checkbox之类，需要使用表单渲染
+                    title: "添加",
+                    content: $("#addForm").html()
+                });
+                form.render();
 
                 //向服务端发送删除指令
                 // $.ajax({
@@ -164,24 +164,26 @@
             else if(layEvent=='updateData'){
 
             }
-        })
+        });
 
         form.on('submit(commit)', function (data) {
-
+            // console.log(data.form);
             // 如何自定义增加表单数据
             let input = $("<input name='userTestName' type='hidden' value='张三测试'/>")
             $(data.form).append(input);
             let formData = new FormData(data.form);
             console.log(formData);
             formData.append("goodsId", "123456789");// 很重要，必用。最好用
+
+
             // 添加一个文件呢？
             // 添加文件的步骤：首先，第一步：获取file的jsDom对象
-            let file = document.getElementById('fileTest');
-            let f = file.files[0];
-            formData.append("pic", f);// 这个是添加文件到表单之中
+            // let file = document.getElementById('fileTest');
+            // let f = file.files[0];
+            // formData.append("pic", f);// 这个是添加文件到表单之中
 
             $.ajax({
-                url: "/ajaxGetData",// 请求数据服务器地址，只能是当前项目，JSONP才能访问外网（需要服务器配合才能用）
+                url:"http://localhost:80/pages/back/user/add",// 请求数据服务器地址，只能是当前项目，JSONP才能访问外网（需要服务器配合才能用）
                 contentType: false,// 默认就是表单数据(不写)，如果此时要传递的是json字符串，
                 // 那么此时就用application/json,如果此时要传递图片"multipart/form-data，还有数组，集合，还有对象，那么contentType必须指定为false
                 data: formData,// 要上传的参数
@@ -194,7 +196,7 @@
 
                 },
                 type: 'post',// ajax请求的方式，post或get
-            })
+            });
 
 
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -284,7 +286,7 @@
             //obj.del(); //删除当前行
             //obj.update(fields) //修改当前行数据
 
-        // });//-尾部----------------------------------------------------------------------------双击监听事件的位置
+        // });//-尾部----------------------------------------------------------------------双击监听事件的位置
 //
 // //监听行双击事件
 //         table.on('rowDouble(userTable)', function (obj) {
