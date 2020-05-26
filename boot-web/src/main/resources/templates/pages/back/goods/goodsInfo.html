@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>查询成功</h3>
+<h3>所有上商品信息</h3>
+<thead>
+    <tr>
+        <td>ID</td>
+        <td>名称</td>
+        <td>原价</td>
+        <td>现价</td>
+        <td>出售数量</td>
+        <td>评分</td>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <div th:each="g:${list}">
+            <td th:text="${g.goodsId}"></td>
+            <td th:text="${g.title}"></td>
+            <td th:text="${g.oldPrice}"></td>
+            <td th:text="${g.nowPrice}"></td>
+            <td th:text="${g.sold}"></td>
+            <td th:text="${g.score}"></td>
+        </div>
+    </tr>
+</tbody>
+
+<tfoot>
+<tr>
+<!--    <td th:href="${}}">首页</td>-->
+<!--    <td th:href="${}">上一页</td>-->
+<!--    <td th:href="${}">下一页</td>-->
+<!--    <td th:href="${}">尾页</td>-->
+<!--</tr>-->
+</tfoot>
+</body>
+</html>

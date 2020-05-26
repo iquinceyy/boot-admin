@@ -1,0 +1,21 @@
+server:
+  port: 80 #启动端口80
+  servlet:
+    context-path:
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/demo_db?serverTimezone=Asia/Shanghai  # 数据库地址
+    type: com.alibaba.druid.pool.DruidDataSource
+  messages:
+    basename: i18n/msg
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  # 数据库下划线转驼峰
+  mapper-locations: classpath*:mybatis/mapper/**/*.xml  # mybatis的mapper文件位置
+logging:
+  level:
+    com.qianfeng.boot.dao: debug   #dao里边要配置成debug以下的级别，才能够看到sql语句，
+                                   #还有一个级别 TARCE;更详细的级别，能够看到查询出来的结果

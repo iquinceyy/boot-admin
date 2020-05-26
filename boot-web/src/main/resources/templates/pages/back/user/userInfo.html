@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+<p>
+<p>hello weCome to this Page</p>
+<hr>
+<h4>单个数据</h4>
+<p th:text="${name}"></p>
+<div>
+    <h4>引用数据</h4>
+    <p th:text="${u.name}"></p>
+    <div th:text="${u.age}"></div>
+    <div th:text="${u.sex}"></div>
+</div>
+<hr>
+<h4>显示结合或者数组</h4>
+<div th:each="u:${list}">
+    <div>名字：<span th:text="${u.name}"></span></div>
+    <div> 年龄：<span th:text="${u.age}"></span></div>
+    <div> 性别：<span th:text="${u.sex}"></span></div>
+    <div th:text="'索引'+${uStat.index}"></div>
+    <div th:text="'爱好：'+${u.interest}"></div>
+</div>
+<hr>
+<h3>用@{/}表示上下文路径</h3>
+<div>
+<!--    <div th:text="@{/}"></div>-->
+    <div><img th:src="@{/images/test.jpg}" style="width: 120px;height: 100px"> </div>
+    <div><a th:href="@{/pages/back/user/getUserById2}">访问用户页面</a></div>
+</div>
+<hr>
+<h3>用*{} 表示声明一个变量，在内部使用就不用写变量名称了【了解】</h3>
+<div th:object="${u}"></div>
+<div th:text="*{u.age}"></div>
+<div th:text="*{u.name}"></div>
+<div th:text="*{u.sex}"></div>
+<div th:text="*{u.interest}"></div>
+<hr>
+<h3>表达式基本对象</h3>
+<div th:text="${application.test}"></div>
+<div th:text="${#servletContext.getAttribute('test')}"></div>
+<h4>session掌握</h4>
+<div th:text="${session.nickNmae}"></div>
+<hr>
+<h3>表达式工具对象</h3>
+<div >现在日期：<span th:text="${#dates.createNow()}"></span></div>
+<div >格式日期：<span th:text="${#dates.format(#dates.createNow(),'yy-MM-dd : hh:mm:ss')}"></span></div>
+<div>后台传递日期：<span th:text="${#dates.format(date,'yy-MM-dd : hh:mm:ss')}"></span></div>
+<hr>
+<h3>数字:掌握格式化数字和 sequence方法</h3>
+<div>格式化数字（四舍五入）：<span th:text="${#numbers.formatDecimal(1.2345,3,2,'COMMA')}"></span></div>
+<div>格式化数字（四舍五入）：<span th:text="${#numbers.formatDecimal(1.2356,3,2)}"></span></div>
+这个的作用是以后我们可以在没有后台数据的时候，模拟前端长相
+<div th:each="x:${#numbers.sequence(1,5)}" th:text="${x}"></div>
+下面这个是步长为2
+<div th:each="s:${#numbers.sequence(1,10,2)}" th:text="${s}"></div>
+<hr>
+<h3>集合数组</h3>
+<div th:text="${#lists.size(list)}">数组长度</div>
+<h3>整合sequence</h3>
+<div th:each="x:${#numbers.sequence(0,#lists.size(list))}" th:text="${x}"></div>
+<hr>
+<h3>掌握strings方法中的to'String方法：这个方法会在后端传递Long类型（超过17位）的时候，需要转换成字符串</h3>
+<h3>掌握th:text和th:utext的区别</h3>
+<div th:text="${text}"></div>
+<div th:utext="${text}"></div>
+<p>utext在商品的详情页面会用到，因为商品详情页面里边的图片是base64为的，而且还包含了很多标签，
+    也就是说是一个富文本。所以 这个时候需要用到utext</p>
+<hr>
+<h3>掌握th:if判断</h3>
+<div th:if="${u.name=='张三'}">出现1</div>
+<div th:if="false">隐藏2</div>
+<div th:unless="false">隐藏3</div>
+<hr>
+<h3>【掌握】 替换、插入、包含(代码碎片)</h3>
+<div>第一种：替换碎片:特点：就是将这个div替换成引入的div,引入的div的标签是会被引入的
+    <div th:replace="fragment/js::js"></div>
+</div>
+<div>
+    第二种：插入碎片:特点：
+    <div th:insert="fragment/js::js"></div>
+<!--    <div th:insert="fragment/gouwuche::js"></div>-->
+</div>
+
+<div>
+    第三种：包含碎片:特点：只会包含引入的碎片标签中的内容
+    <div th:include="~{fragment/js::js}"></div>
+
+</div>
+<p>总结：th:insert建议不使用（从3.0开始），大部分情况，建议使用th：replace</p>
+<hr>
+<h3>【了解】 国际化语言支持：#{}</h3>
+<h1 th:text="#{msg}"></h1>
+<a th:href="@{/pages/back/user/getUserById2(lan='zh_CN')}">中文</a>
+<a th:href="@{/pages/back/user/getUserById2(lan='en_US')}">英文显示</a>
+
+
+</body>
+</html>
