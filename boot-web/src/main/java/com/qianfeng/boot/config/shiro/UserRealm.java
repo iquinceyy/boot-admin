@@ -1,6 +1,7 @@
 package com.qianfeng.boot.config.shiro;
 
 import com.qianfeng.boot.pojo.query.UserQuery;
+import com.qianfeng.boot.pojo.vo.RoleVO;
 import com.qianfeng.boot.pojo.vo.UserVO;
 import com.qianfeng.boot.service.UserService;
 import com.qianfeng.boot.util.password.PasswordUtil;
@@ -13,8 +14,12 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Author quincey
@@ -84,7 +89,14 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo auth = new SimpleAuthorizationInfo();
 
         String phone = principalCollection.getPrimaryPrincipal().toString();//拿到电话或者用户名
-        userService.selectHisRolesByPhone(phone);
+        List<RoleVO> roles = userService.selectHisRolesByPhone(phone);// 根据用户去查询用户的角色
+        Set<String> set = new HashSet<>();
+        Set<String> ps = new HashSet<>();
+        if (!CollectionUtils.isEmpty(roles)){
+            for (RoleVO r: roles){
+                set.add(r.getFlag());
+            }
+        }
         return null;
     }
 }
