@@ -1,8 +1,20 @@
 package com.qianfeng.boot.dao;
 
-/**
- * Author quincey
- * Date 2020/5/21 19:45
- */
+import com.qianfeng.boot.pojo.entity.User;
+import com.qianfeng.boot.pojo.vo.UserVO;
+
 public interface UserDao {
+    int deleteByPrimaryKey(Long userId);
+
+    int insert(User record);
+
+    int insertSelective(User record);
+
+    User selectByPrimaryKey(Long userId);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
+
+    UserVO selectDbUserByPhone(String phone);
 }

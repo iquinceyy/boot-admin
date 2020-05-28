@@ -57,6 +57,16 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-all -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <version>1.5.3</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <!--            微服务（springCloud）就是这种管理方式-->
     </dependencies>
 </dependencyManagement>
 

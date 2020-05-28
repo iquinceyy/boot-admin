@@ -38,11 +38,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!-- druid数据源 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
         <!--         mybatis整合springboot-->
         <!-- mybatis整合springboot -->
 
@@ -55,6 +50,36 @@
             <artifactId>boot-pojo</artifactId>
             <scope>compile</scope>
         </dependency>
+
+        <!--shiro的5个依赖包-->
+        <!--shiro的核心依赖包 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+        </dependency>
+        <!-- shiro和-web整合 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+        </dependency>
+        <!-- shiro整合spring或者springboot -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+        <!-- ehcache的缓存组件 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+        </dependency>
+        <!-- 这个是shiro整合thymeleaf页面，也就是在页面可以使用shiro标签来进行权限何角色验证 -->
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <!--    shiro的5个依赖包-->
+
     </dependencies>
 
     <build>

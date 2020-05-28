@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Author quincey
@@ -29,7 +29,7 @@ public class UserController {
     GoodsDao goodsDao;
     String insertUser(){
         User user = new User();
-        user.setName("李四");
+//        user.setName("李四");
 //        user.setAge(18);
 //        user.setInterest("学习");
 //        userDao.
@@ -43,47 +43,47 @@ public class UserController {
     }
 
     @RequestMapping("getUserById2")
-    String test(Model model, User u, HttpServletRequest request) {
-        model.addAttribute("name","张三");
+//    String test(Model model, User u, HttpServletRequest request) {
+//        model.addAttribute("name","张三");
+//
+//        ServletContext servletContext = request.getServletContext();
+//        servletContext.setAttribute("test","测试");
+//
+//        // 1、传递简单基本类型，字符串，数字，Long,double````
+//        request.getSession().setAttribute("nickNmae","Hello ");
+//
+//        // 2、传递一个对象
+//        u.setName("张三");
+//        u.setAge(18);
+//        u.setSex("男");
+//        u.setInterest("学习");
+//
+//        model.addAttribute("u",u);
+//
+//        // 3、向页面传递集合或者数组
+//        List<User> list = new ArrayList<>();
+//        list.add(u);
+//        list.add(u);
+//        list.add(u);
+//        list.add(u);
+//
+//        model.addAttribute("list",list);
+//
+//        // 4、传递一个日期到前端去被格式化
+//        model.addAttribute("date",new Date());
+//
+//        // 5、掌握text和utext的区别
+//        model.addAttribute("text","<h1>text和utext的区别</h1>");
+//
+//
+//
+//
+//        System.out.println("lalala222");
+//        return "pages/back/user/userInfo";
+//    }
 
-        ServletContext servletContext = request.getServletContext();
-        servletContext.setAttribute("test","测试");
 
-        // 1、传递简单基本类型，字符串，数字，Long,double````
-        request.getSession().setAttribute("nickNmae","Hello ");
-
-        // 2、传递一个对象
-        u.setName("张三");
-        u.setAge(18);
-        u.setSex("男");
-        u.setInterest("学习");
-
-        model.addAttribute("u",u);
-
-        // 3、向页面传递集合或者数组
-        List<User> list = new ArrayList<>();
-        list.add(u);
-        list.add(u);
-        list.add(u);
-        list.add(u);
-
-        model.addAttribute("list",list);
-
-        // 4、传递一个日期到前端去被格式化
-        model.addAttribute("date",new Date());
-
-        // 5、掌握text和utext的区别
-        model.addAttribute("text","<h1>text和utext的区别</h1>");
-
-
-
-
-        System.out.println("lalala222");
-        return "pages/back/user/userInfo";
-    }
-
-
-    @RequestMapping("userList")
+//    @RequestMapping("userList")
     String userList() {
 
         System.out.println("userList");
