@@ -2,18 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <groupId>com.qiangfeng</groupId>
+        <groupId>com.qianfeng</groupId>
         <artifactId>boot-admin</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <artifactId>boot-web</artifactId>
-
-
     <name>boot-web</name>
-    <description>这是spring boot web</description>
-
+    <description>这个是一个web项目，80端口</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -21,11 +18,12 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
 
         <!-- thymeleaf 默认情况下，它就会去解析 classpath类资源路径下面的templates 下面去找 你的页面，而且默认页面后缀是.html -->
@@ -38,24 +36,24 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!--         mybatis整合springboot-->
-        <!-- mybatis整合springboot -->
 
         <!-- druid数据源 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
-
+        <!--         mybatis整合springboot-->
+        <!-- mybatis整合springboot -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.qianfeng</groupId>
             <artifactId>boot-pojo</artifactId>
-            <scope>compile</scope>
         </dependency>
+
 
         <!--shiro的5个依赖包-->
         <!--shiro的核心依赖包 -->
@@ -86,8 +84,9 @@
         </dependency>
         <!--    shiro的5个依赖包-->
 
-    </dependencies>
 
+    </dependencies>
+    <!-- 这个build要不要怎么判断，就看有没有启动类-->
     <build>
         <plugins>
             <plugin>
