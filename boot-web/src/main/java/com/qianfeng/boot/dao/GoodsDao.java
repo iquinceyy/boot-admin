@@ -27,6 +27,8 @@ public interface GoodsDao {
 
     List<Goods> selectPage(Integer start,Integer num);
 
+    List<Goods> searchGoods(String title);
+
 
 
     List<GoodsVO> ajaxList(GoodsQuery query);

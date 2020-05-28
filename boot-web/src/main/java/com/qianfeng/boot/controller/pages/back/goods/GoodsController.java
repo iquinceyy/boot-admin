@@ -27,7 +27,6 @@ public class GoodsController extends BaseController {
 
     @Resource
     GoodsDao goodsDao;
-    @Resource
     GoodsService goodsService;
 
     @RequestMapping("findById")
@@ -80,6 +79,7 @@ public class GoodsController extends BaseController {
     @RequestMapping("ajaxList")
     @ResponseBody
     PageDTO ajaList(GoodsQuery query){
+
         return goodsService.ajaxList(query);
     }
 
@@ -99,7 +99,18 @@ public class GoodsController extends BaseController {
 
         String s = saveFile(pic, "/upload/goods");
         goods.setImg(s);// 将保存图片的路径设置给这个实体类
-        System.out.println("新增了一条");
+        System.out.println("修改了一条");
         return goodsService.edit(goods);
+    }
+
+    @RequestMapping("search")
+    @ResponseBody
+    String search(String title){
+        title="橘子";
+        List<Goods> goods = goodsDao.searchGoods(title);
+        System.out.println(1111);
+        System.out.println(goods);
+//        return null;
+        return "pages/back/goods/goodsList";
     }
 }

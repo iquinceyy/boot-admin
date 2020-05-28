@@ -34,6 +34,13 @@ public class GoodsServiceImpl implements GoodsService {
         return null;
     }
 
+    @Override
+    public String search(String title) {
+        List<Goods> list = goodsDao.searchGoods(title);
+
+        return null;
+    }
+
 
     @Override
     public PageDTO ajaxList(GoodsQuery query) {
@@ -59,6 +66,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public ResponseDTO edit(Goods goods) {
+
         return ResponseDTO.get(goodsDao.updateByPrimaryKeySelective(goods)==1);
     }
 }

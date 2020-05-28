@@ -1,20 +1,29 @@
 package com.qianfeng.boot.task;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
 /**
  * quincey
  * Date 2020/5/26 22:55
  */
 
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-
 @Component
 public class SpringTaskTest {
+
+    Logger logger = LoggerFactory.getLogger(SpringTaskTest.class);
     @Scheduled(cron = "3/4 * * * * ?")
     public void addUser(){//单线程
-        System.out.println("定时添加用户"+System.currentTimeMillis()/1000);
         try {
-            Thread.sleep(100000);
+            System.err.println("定时添加用户了哦" + System.currentTimeMillis() / 1000);
+            logger.trace("trace级别");
+            logger.debug("debug级别");
+            logger.info("info级别");
+            logger.warn("警告级别");
+            logger.error("错误级别");
+            Thread.sleep(100000000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

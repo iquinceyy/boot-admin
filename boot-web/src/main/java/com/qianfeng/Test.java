@@ -1,16 +1,12 @@
 package com.qianfeng;
 
-import com.qianfeng.boot.task.QuartzTaskTest;
-import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
-
 /**
  * quincey
  * Date 2020/5/26 23:17
  */
 
 
-public class Test {
+/*public class Test {
     public static void main(String[] args) throws SchedulerException {
         //第一步创建好的job实现类（具体的定时任务的业务代码）
         JobDataMap map = new JobDataMap();
@@ -34,4 +30,4 @@ public class Test {
         defaultScheduler.start();
     }
 
-}
+}*/

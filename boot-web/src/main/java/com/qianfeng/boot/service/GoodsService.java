@@ -17,6 +17,11 @@ public interface GoodsService {
 
     List<Goods> selectAll();
 
+    String search(String title);
+
+
+
+    //-----------------------------------
 
     PageDTO ajaxList(GoodsQuery query);
 

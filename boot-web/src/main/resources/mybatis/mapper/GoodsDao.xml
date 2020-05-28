@@ -169,7 +169,7 @@
     <select id="selectPage" resultType="com.qianfeng.boot.pojo.entity.Goods">
         select
         <include refid="Base_Column_List"/>
-        from goods limit ${start},${num}
+        from goods limit #{start},#{num}
     </select>
     <select id="ajaxList" resultType="com.qianfeng.boot.pojo.vo.GoodsVO">
         select
@@ -199,6 +199,17 @@
             </if>
             <if test="maxPrice!=null">
                 and now_price &lt;=#{maxPrice}
+            </if>
+        </where>
+    </select>
+
+    <select id="searchGoods" resultType="com.qianfeng.boot.pojo.entity.Goods">
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+        <where>
+            <if test="title!=null and title!=''">
+                and title like CONCAT ('%',#{title},'%')
             </if>
         </where>
     </select>
