@@ -128,5 +128,10 @@
     where permission_id in
     <foreach collection="ids" open="(" close=")" separator="," item="id">#{id}</foreach>
   </select>
+    <select id="selectPermissionsByIds" resultType="com.qianfeng.boot.pojo.vo.PermissionVO">
+      select
+        <include refid="Base_Column_List"/>
+        from permission where permission_id in  (${permissions})
+    </select>
 
 </mapper>

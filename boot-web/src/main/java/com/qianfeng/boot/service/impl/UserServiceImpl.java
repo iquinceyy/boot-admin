@@ -35,15 +35,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserVO login(UserQuery query) {
+        return userDao.selectUserByPhoneAndPassword(query);
+    }
+
+    @Override
     public UserVO selectDbUserByPhone(UserQuery query) {
-        UserVO userVO = userDao.selectDbUserByPhone(query.getPhone());
+        UserVO userVO = userDao.selectUserByPhone(query.getPhone());
         return userVO;
     }
 
 
     @Override
     public List<RoleVO> selectHisRolesByPhone(String phone) {//通过用户名 查询 这个人的角色
-        UserVO u = userDao.selectDbUserByPhone(phone);
+        UserVO u = userDao.selectUserByPhone(phone);
         if(!StringUtils.isEmpty(u.getRoles())){
             List<RoleVO> roles = roleDao.selectHisRolesByRoles(u.getRoles());
             // 在查询完成roles之后，我们应该 roles的permissionVOS赋值
@@ -66,7 +71,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    private List<PermissionVO> selectHisPermissionByRoles(List<RoleVO> roles) {
+     public List<PermissionVO> selectHisPermissionByRoles(List<RoleVO> roles) {
         List<PermissionVO> list = new ArrayList<>();
         //        // 第一种 ：
 //        for (RoleVO role : roles) {

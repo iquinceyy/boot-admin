@@ -20,6 +20,8 @@ public interface PermissionDao {
 
     int updateByPrimaryKey(Permission record);
 
+    List<PermissionVO> selectPermissionsByIds(String permissions);
+
     List<PermissionVO> selectPermissionBySet(@Param("ids") Set<String> paramSet);
 
 

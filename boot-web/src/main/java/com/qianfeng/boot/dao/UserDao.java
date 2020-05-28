@@ -1,6 +1,7 @@
 package com.qianfeng.boot.dao;
 
 import com.qianfeng.boot.pojo.entity.User;
+import com.qianfeng.boot.pojo.query.UserQuery;
 import com.qianfeng.boot.pojo.vo.UserVO;
 
 public interface UserDao {
@@ -16,5 +17,7 @@ public interface UserDao {
 
     int updateByPrimaryKey(User record);
 
-    UserVO selectDbUserByPhone(String phone);
+    UserVO selectUserByPhone(String phone);
+
+    UserVO selectUserByPhoneAndPassword(UserQuery query);
 }
